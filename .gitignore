@@ -4,3 +4,5 @@ emptyTables
 noContraints.sql
 tableCreation.sql
 wordCountInfo
+values
+tableNames
