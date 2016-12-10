@@ -1,2 +1,6 @@
 tables
 ddfs_Fri.sql
+emptyTables
+noContraints.sql
+tableCreation.sql
+wordCountInfo
