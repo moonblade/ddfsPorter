@@ -1,3 +1,5 @@
+# Uncomment this to make it command line accessible
+# sqlFile=$1
 sqlFile=ddfs_Fri.sql
 
 #get only create tables
@@ -25,10 +27,6 @@ cat tableCreation.sql | grep "CREATE TABLE" | cut -d' ' -f3 > tableNames
 # for f in *; do mv $f $f.sql; done
 # cd ..
 
-
-#get word count information
-wc tables/* > wordCountInfo
-
 #find which all tables are empty, ie have no content (check for ones with only 4 lines)
 wc -l tables/* | grep "\b4\b" | cut -f11 -d' ' > emptyTables
 
@@ -37,6 +35,13 @@ wc -l tables/* | grep "\b4\b" | cut -f11 -d' ' > emptyTables
 for f in $(cat emptyTables); do rm $f; done
 
 # # Separate inserted values into single lines
-cd tables
-for f in *.sql; do echo $f; cat $f | grep -hoP "\(.*?\)[,;]" > ../values/${f%.sql}; done
-cd ..
+# mkdir values
+# cd tables
+# for f in *.sql; do echo $f;mkdir ../values/${f%.sql}; cat $f | grep -hoP "\(.*?\)[,;]" > ../values/${f%.sql}/${f%.sql}; done
+# cd ..
+
+
+# #split into 100 line chunks
+# cd values
+# for f in *; do split -l 100 -d $f/$f $f/$f; done
+# cd ..
